@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title th:text="#{userList.title}">User List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 th:text="#{userList.header}">User List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="#{userList.id}">ID</th>
+            <th th:text="#{userList.username}">Username</th>
+            <th th:text="#{userList.password}">Password</th>
+            <th th:text="#{userList.firstName}">First Name</th>
+            <th th:text="#{userList.lastName}">Last Name</th>
+            <th th:text="#{userList.email}">Email</th>
+            <th th:text="#{userList.phoneNumber}">Phone Number</th>
+            <th th:text="#{userList.role}">Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phoneNumber}"></td>
+            <td th:text="${user.role}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

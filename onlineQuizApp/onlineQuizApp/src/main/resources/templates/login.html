@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{pa.title}">Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #001f3f; /* Dark blue background for the page */
+            font-family: Arial, sans-serif;
+            color: #fff; /* Default text color as white */
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #176B87; /* Attractive blue for the form */
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #fff; /* Ensuring text inside the form is white */
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for input fields */
+            color: #333; /* Darker text color for readability in input fields */
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            font-size: 1rem;
+            background-color: #003366; /* Darker blue for the button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005f99; /* Slightly lighter shade on hover */
+        }
+
+        .links {
+            margin-top: 1rem;
+        }
+
+        .links a {
+            color: #a2d5f2; /* Light blue for links */
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1 th:text="#{login.title}">Login</h1>
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" th:placeholder="#{login.username.placeholder}" required>
+        <input type="password" name="password" th:placeholder="#{login.password.placeholder}" required>
+        <button type="submit" th:text="#{login.button}">Login</button>
+    </form>
+    <div class="links">
+        <p th:text="${error} ?: #{login.error}"></p>
+        <p><a th:href="@{/register}" th:text="#{login.register.link}">Don't have an account? Register here</a></p>
+        <p><a th:href="@{/forgot-password}" th:text="#{login.forgotPassword.link}">Forgot Password?</a></p>
+        <p th:if="${param.logout}" th:text="#{login.logout.success}" style="color:green;">You have been logged out successfully.</p>
+    </div>
+</div>
+
+</body>
+</html>

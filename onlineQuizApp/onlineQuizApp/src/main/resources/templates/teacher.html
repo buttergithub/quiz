@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{title.teacherDashboard}">Teacher Dashboard - Online Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('img.png') no-repeat center center fixed; /* Update path */
+            background-size: cover; /* This will make the image cover the entire page */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for readability */
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-section {
+            margin: 1.5rem 0;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .dashboard-section h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-section p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 10px 20px;
+            background-color: #6a11cb;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2575fc;
+        }
+
+        .logout {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .logout a {
+            color: #6a11cb;
+            text-decoration: none;
+        }
+
+        .logout a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 th:text="#{label.welcome}">Welcome to the Lecturer Dashboard</h1>
+    <p class="welcome-message" th:text="#{label.welcomeMessage}">Manage quizzes, review student performance, and enhance learning with powerful tools.</p>
+    <div class="message" th:text="${message}"></div>
+
+    <div class="dashboard-section">
+        <h2 th:text="#{section.quizManagement}">Quiz Management</h2>
+        <p th:text="#{section.quizManagementDescription}">Create, edit, and manage quizzes to challenge and inspire your students.</p>
+        <a class="btn" th:href="@{/teacher/create-quiz}" th:text="#{button.createQuiz}">Create New Quiz</a>
+        <a class="btn" th:href="@{/teacher/view-quizzes}" th:text="#{button.manageQuizzes}">Manage Existing Quizzes</a>
+    </div>
+
+    <div class="dashboard-section">
+        <h2 th:text="#{section.studentProgress}">Student Progress</h2>
+        <p th:text="#{section.studentProgressDescription}">Review student performance and track their progress to provide personalized feedback.</p>
+        <a class="btn" th:href="@{/teacher/student-progress}" th:text="#{button.viewStudentProgress}">View Student Progress</a>
+        <a class="btn" th:href="@{/teacher/grade-quizzes}" th:text="#{button.gradeQuizzes}">Grade Quizzes</a>
+    </div>
+
+    <div class="dashboard-section">
+        <h2 th:text="#{section.quizAnalytics}">Quiz Analytics</h2>
+        <p th:text="#{section.quizAnalyticsDescription}">Gain insights into quiz performance and identify areas where students need improvement.</p>
+        <a class="btn" th:href="@{/teacher/quiz-analytics}" th:text="#{button.viewQuizAnalytics}">View Quiz Analytics</a>
+    </div>
+
+    <div class="dashboard-section">
+        <h2 th:text="#{section.teachingResources}">Teaching Resources</h2>
+        <p th:text="#{section.teachingResourcesDescription}">Access additional resources to support your quizzes and aid student learning.</p>
+        <a class="btn" th:href="@{/resources}" th:text="#{button.viewResources}">View Resources</a>
+    </div>
+
+    <p class="logout">
+        <a th:href="@{/logout}" th:text="#{button.logout}">Logout</a>
+    </p>
+</div>
+
+</body>
+</html>

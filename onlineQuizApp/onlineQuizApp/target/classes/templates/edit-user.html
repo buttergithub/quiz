@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+  <title th:text="#{pag.title}">Add New User</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+  <h2 th:text="#{page.header}">Edit User</h2>
+  <form th:action="@{/admin/users/update}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}"/> <!-- Hidden field for user ID -->
+    <div class="mb-3">
+      <label for="username" class="form-label" th:text="#{lab.username}">Username</label>
+      <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label" th:text="#{lab.password}">Password</label>
+      <input type="text" id="password" name="password" class="form-control" th:value="${user.password}" required>
+    </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label" th:text="#{lab.firstName}">First Name</label>
+      <input type="text" id="firstName" name="firstName" class="form-control" th:value="${user.firstName}" required>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label" th:text="#{lab.lastName}">Last Name</label>
+      <input type="text" id="lastName" name="lastName" class="form-control" th:value="${user.lastName}" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label" th:text="#{lab.email}">Email</label>
+      <input type="email" id="email" name="email" class="form-control" th:value="${user.email}" required>
+    </div>
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label" th:text="#{lab.phoneNumber}">Phone Number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" th:value="${user.phoneNumber}" required>
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label" th:text="#{lab.role}">Role</label>
+      <select id="role" name="role" class="form-select" required>
+        <option value="" disabled selected th:text="#{placeholder.selectRole}">Select a role</option>
+        <option value="ROLE_USER" th:text="#{option.student}">Student</option>
+        <option value="ROLE_TEACHER" th:text="#{option.teacher}">Teacher</option>
+        <option value="ROLE_ADMIN" th:text="#{option.admin}">Admin</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" th:text="#{button.update}">Update</button>
+  </form>
+</div>
+</body>
+</html>

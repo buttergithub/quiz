@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title th:text="#{title.quizHub}">QuizHub - Home</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            min-height: 100vh;
+        }
+        /* Navigation Bar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+         /* Language Switcher Styling */
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .language-icon {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            color: #333;
+            min-width: 120px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Show dropdown when active */
+        .language-switcher.active .dropdown-menu {
+            display: block;
+        }
+
+        .nav__logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .nav__socials {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            color: #001C30;
+        }
+        .nav__socials a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .nav__contact__card {
+            display: flex;
+            align-items: center;
+            margin-left: 2rem;
+        }
+        .nav__contact__card h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: #fff;
+        }
+        /* Header Styling */
+        .header__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            margin: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .header__image img {
+                height: 100vh;
+            }
+        }
+        .header__content {
+            color: #fff;
+            margin-top: 2rem;
+        }
+        .header__content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .header__content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        /* Search Form Styling */
+        .input__row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .input__group {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            width: 200px;
+        }
+        .input__group span {
+            color: #2575fc;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .input__group input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            color: #333;
+        }
+        /* Button Styling */
+        button {
+            background-color: #2575fc;
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #6a11cb;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav__logo" th:text="#{nav.logo}">QuizHub</div>
+    <ul class="nav__socials">
+        <li><a th:href="@{/login}" >Login</a></li>
+        <li><a th:href="@{/register}" >Register</a></li>
+        <li><a href="#"><i class="ri-twitter-fill"></i></a></li>
+        <li><a href="#"><i class="ri-facebook-circle-fill"></i></a></li>
+        <li><a href="#"><i class="ri-pinterest-line"></i></a></li>
+        <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+    </ul>
+    <div class="nav__contact">
+        <div class="nav__contact__card">
+            <span><i class="ri-phone-line"></i></span>
+            <div>
+                <p th:text="#{nav.callUs}">Call Us</p>
+                <h4 th:text="#{nav.phoneNumber}">+250782413479</h4>
+            </div>
+        </div>
+        <div class="nav__contact__card">
+            <span><i class="ri-mail-line"></i></span>
+            <div>
+                <p>Email Us</p>
+                <h4 >uwizeyengogasandra@gmail.com</h4>
+            </div>
+        </div>
+    </div>
+    <!-- Language Switcher -->
+    <div class="language-switcher" id="languageSwitcher">
+        <i class="ri-global-line language-icon"></i>
+        <div class="dropdown-menu">
+            <a href="?lang=en" >English</a>
+            <a href="?lang=fr" >French</a>
+
+        </div>
+    </div>
+</nav>
+
+<header class="header__container">
+    <div class="header__image">
+        <img src="header.jpg" th:alt="#{header.imageAlt}" alt="Welcome to QuizHub" />
+    </div>
+    <div class="header__content">
+        <h1 th:text="#{header.mainTitle}">Your Hub for Knowledge & Assessment</h1>
+        <p th:text="#{header.mainDescription}">
+            Dive into a diverse range of quizzes, track your progress, and sharpen your skills with our tailored resources.
+            Whether you’re a student or professional, QuizHub is here to guide you through a dynamic learning experience.
+        </p>
+        <form action="/" method="get">
+            <div class="input__row">
+                <div class="input__group">
+                    <span><i class="ri-search-line"></i></span>
+                    <input type="text" th:placeholder="#{form.searchPlaceholder}" placeholder="Search for Course" />
+                </div>
+                <div class="input__group">
+                    <span><i class="ri-arrow-down-s-line"></i></span>
+                    <input type="text" th:placeholder="#{form.categoryPlaceholder}" placeholder="Categories" />
+                </div>
+            </div>
+            <button type="submit" th:text="#{button.search}">Search Now</button>
+        </form>
+    </div>
+</header>
+
+<script>
+    // Toggle dropdown visibility
+    document.getElementById("languageSwitcher").addEventListener("click", function() {
+        this.classList.toggle("active");
+    });
+
+    // Close dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+        const languageSwitcher = document.getElementById("languageSwitcher");
+        if (!languageSwitcher.contains(event.target)) {
+            languageSwitcher.classList.remove("active");
+        }
+    });
+</script>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="main.js"></script>
+</body>
+</html>
