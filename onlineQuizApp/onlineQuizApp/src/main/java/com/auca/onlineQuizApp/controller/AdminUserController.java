@@ -190,12 +190,12 @@ public class AdminUserController {
 
 
 
-    @GetMapping("/admin/upload")
+    @GetMapping("/admin/upload/users")
     public String showUploadPage() {
         return "upload1"; // Return the combined upload page template
     }
 
-    @PostMapping("/admin/upload")
+    @PostMapping("/admin/upload/users")
     public String uploadUsers(@RequestParam("file") MultipartFile file, Model model) {
         if (file.isEmpty()) {
             model.addAttribute("userMessage", "Please select a file to upload.");
@@ -210,13 +210,15 @@ public class AdminUserController {
 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
+                if (data.length < 3) { // Ensure the row has at least 3 fields
+                    throw new IllegalArgumentException("Invalid row format: " + line);
+                }
+
                 User user = new User();
-                user.setUsername(data[0]);
-                user.setFirstName(data[1]);
-                user.setLastName(data[2]);
-                user.setEmail(data[3]);
-                user.setPhoneNumber(data[4]);
-                user.setRole(Role.valueOf(data[6]));
+                user.setId(Long.valueOf(data[0]));
+                user.setUsername(data[1]);
+                user.setEmail(data[2]);
+
                 userList.add(user);
             }
 
